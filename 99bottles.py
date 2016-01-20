@@ -2,20 +2,18 @@
 https://www.reddit.com/r/beginnerprojects/comments/19kxre/project_99_bottles_of_beer_on_the_wall_lyrics/
 
 GOAL
-Create a program that prints out every line to the song
-"99 bottles of beer on the wall." This should be a pretty
-simple program, so to make it a bit harder, here are some rules
-to follow.
+Create a program that prints out every line to the song "99 bottles of beer on
+the wall." This should be a prettysimple program, so to make it a bit harder,
+here are some rules to follow.
 
 RULES
--If you are going to use a list for all of the numbers, do not 
-manually type them all in. Instead, use a built in function.
+-If you are going to use a list for all of the numbers, do not manually type
+them all in. Instead, use a built in function.
 
--Besides the phrase "take one down," you may not type in any
-numbers/names of numbers directly into your song lyrics.
+-Besides the phrase "take one down," you may not type in any numbers/names of
+numbers directly into your song lyrics.
 
--Remember, when you reach 1 bottle left, the word "bottles" 
-becomes singular.
+-Remember, when you reach 1 bottle left, the word "bottles" becomes singular.
 
 -Put a blank line between each verse of the song.
 '''
@@ -39,8 +37,7 @@ def verse(number):
         print(str(number - 1) + " bottles of beer on the wall.")
     else:
         print("\n" + "Invalid bottles of beer on the wall.")
-    
+
 
 for num in range(repeat, 0, -1):
     verse(num)
-
