@@ -1,4 +1,5 @@
 '''
+
 https://www.reddit.com/r/beginnerprojects/comments/19jj9a/project_higherlower_guessing_game/
 
 MAIN GOAL
@@ -21,51 +22,51 @@ out how many guesses were taken before the user arrived at the correct answer.
 
 import random
 
-play = 'y'
 
-def random_num(max):
-    return random.randint(1, max)
-
-def evaluate_guess(guess, answer):
-    guess = int(guess)
-    answer = int(answer)
-    if guess == answer:
-        return True
-    elif guess > answer:
-        print("{} is too high.".format(guess))
-        return False
-    elif guess < answer:
-        print("{} is too low.".format(guess))
-        return False
+def request_guess(lower, upper):
+    while True:
+        guess = input("\nGuess a number between {} and {}: ".format(lower, upper))
+        if guess.isdigit():
+            guess = int(guess)
+            if (lower <= guess <= upper):
+                return guess
 
 def setup():
-    while True:
-        print("\n\nChoose a max number.")
-        upper = input()
-        if upper.isdigit() and int(upper) > 1:
-            return (int(upper), random_num(int(upper)))
-            break
-        else:
-            print("Please pick a number greater than 1.\n\n")
-
-            
-#Setup
-answer = ''
-upper = ''
-guesses = 0
-guess = 0
-setup()
+    lower = upper = ''
+    while not lower.isdigit():
+        lower = input("\nChoose a positive minimum whole number: ")
+        if int(lower) < 1:
+            lower = ''
+    lower = int(lower)
+    while not upper.isdigit():
+        upper = input("\nChoose a maximum whole number higher than {}: ".format(lower))
+        if int(upper) <= lower:
+            upper = ''
+    upper = int(upper)
+    return (lower, upper, random.randint(lower, upper))
 
 
+# Game Loop
+play = 'y'
 while play.lower() in ['', 'y', 'yes']:
-    if evaluate_guess(guess, answer) == True:
-        (upper, answer) = setup()
-        
-    guess = int(input("\nGuess a number between 1 and {}: ".format(upper)))
-    guesses += 1
+    # Reset values
+    print("\nInitializing...")
+    guess = ''
+    guesses = 0
+    (lower, upper, answer) = setup()
 
-    if evaluate_guess(guess, answer) == True:
-        print("{} is correct! It took you {} guesses.".format(guess, guesses))
-        print("\nDo you want to play again? [y/n]")
-        play = input()
-        
+    # Guess Loop
+    while guess != answer:
+        guess = request_guess(lower, upper)
+        guesses += 1
+
+        if guess == answer:
+            print("{} is correct! It took you {} guesses.".format(guess, guesses))
+            print("\nDo you want to play again? [Y/n]")
+            play = input()
+        elif guess > answer:
+            print("{} is too high.".format(guess))
+            upper = guess - 1
+        elif guess < answer:
+            print("{} is too low.".format(guess))
+            lower = guess + 1
