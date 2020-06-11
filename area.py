@@ -27,21 +27,21 @@ while repeat:
     choice = input("> ")
     print("")
 
-    if choice == "Square" or choice == "square":
+    if choice.lower() == "square":
         side1 = float(input('Width: '))
         print("The area of your square is:", square(side1))
 
-    elif choice == "Rectangle" or choice == "rectangle":
+    elif choice.lower() == "rectangle":
         side1 = float(input('Length: '))
         side2 = float(input('Width: '))
         print("The area of your rectangle is:", rectangle(side1, side2))
 
-    elif choice == "Triangle" or choice == "triangle":
+    elif choice.lower() == "triangle":
         height = float(input('Height: '))
         base = float(input('Base: '))
         print("The area of your triangle is:", triangle(base, height))
 
-    elif choice == "Circle" or choice == "circle":
+    elif choice.lower() == "circle":
         radius = float(input('Radius: '))
         print("The area of your circle is:", circle(radius))
 
